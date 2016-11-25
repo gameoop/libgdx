@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="20" tileheight="20" nextobjectid="19">
+ <tileset firstgid="1" name="tile" tilewidth="20" tileheight="20" spacing="2" margin="1" tilecount="480" columns="24">
+  <image source="NES - Super Mario Bros - Tileset.png" width="528" height="448"/>
+ </tileset>
+ <tileset firstgid="481" name="14958273_1209304422441415_1224757408_n" tilewidth="20" tileheight="20" spacing="2" margin="1" tilecount="609" columns="29">
+  <image source="14958273_1209304422441415_1224757408_n.jpg" width="640" height="480"/>
+ </tileset>
+ <tileset firstgid="1090" name="14958273_1209304422441415_1224757408_n" tilewidth="20" tileheight="20" tilecount="768" columns="32">
+  <image source="14958273_1209304422441415_1224757408_n.jpg" width="640" height="480"/>
+ </tileset>
+ <tileset firstgid="1858" name="NES - Super Mario Bros - Tileset" tilewidth="20" tileheight="20" tilecount="572" columns="26">
+  <image source="NES - Super Mario Bros - Tileset.png" width="528" height="448"/>
+ </tileset>
+ <layer name="bg" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJwN00OiGAoCALA3tW3btm3btm392rZt27Zt27Y7WeQIKRQkIKAwRShKMYpTgpKUojRlKEs5ylOBilSiMlWoSjWqU4Oa1KI2dahLPerTgIY0ojFNaEozmtOClrSiNW1oSzva04GOdKIzXehKN7rTg570ojd96Es//qM/AxjIIAYzhKEMYzgjGMkoRjOGsYxjPBOYyCQmM4WpTGM6M5jJLGYzh7nMYz4LWMgiFrOEpSxjOStYySpWs4a1rGM9G9jIJjazha1sYzs72MkudrOHvexjPwc4yCEOc4SjHOM4JzjJKU5zhrOc4zwXuMglLnOFq1zjOje4yS1uc4e73OM+D3jIIx7zhKc84zkveMkrXvOGt7zjPR/4yCc+84WvfOM7P/jJL37zh7/8IyBoQMD/CERgghCUYAQnBCEJRWjCEJZwhCcCEYlEZKIQlWhEJwYxiUVs4hCXeMQnAQlJRGKSkJRkJCcFKUlFatKQlnSkJwMZyURmspCVbGQnBznJRW7ykJd85KcABSlEYYpQlGIUpwQlKUVpylCWcpSnAhWpRGWqUJVqVKcGNalFbepQl3rUpwENaURjmtCUZjSnBS1pRWva0JZ2tKcDHelEZ7rQlW50pwc96UVv+tCXfvxHfwYwkEEMZghDGcZwRjCSUYxmDGMZx3gmMJFJTGYKU5nGdGYwk1nMZg5zmcd8FrCQRSxmCUtZxnJWsJJVrGYNa1nHejawkU1sZgtb2cZ2drCTXexmD3vZx34OcJBDHOYIRznGcU5wklOc5gxnOcd5LnCRS1zmCle5xnVucJNb3OYOd7nHfR7wkEc85glPecZzXvCSV7zmDW95x3s+8JFPfOYLX/nGd37wk1/85g9/+UdAMP8JRGCCEJRgBCcEIQlFaMIQlnCEJwIRiURkohCVaEQnBjGJRWziEJd4xCcBCUlEYpKQlGQkJwUpSUVq0pCWdKQnAxnJRGaykJVsZCcHOclFbvKQl3zkpwAFKURhilCUYhSnBCUpRWnKUJZylKcCFalEZapQlWpUpwY1qUVt6lCXetSnAQ1pRGOa0JRmNKcFLWlFa9rQlna0pwMd6URnutCVbnSnBz3pRW/60Jd+/Ed/BjCQQQxmCEMZxnBGMJJRjGYMYxnHeCYwkUlMZgpTmcZ0ZjCTWcxmDnOZx3wWsJBFLGYJS1nGclawklWsZg1rWcd6NrCRTWxmC1vZxnZ2sJNd7GYPe9nHfg5wkEMc5ghHOcZxTnCSU5zmDGc5x3kucJFLXOYKV7nGdW5wk1vc5g53ucd9HvCQRzzmCU95xnNe8JJXvOYNb3nHez7wkU985gtf+cZ3fvCTX/zmD3/5R0Bw/wlEYIIQlGAEJwQhCUVowhCWcIQnAhGJRGSiEJVoRCcGMYlFbOIQl3jEJwEJSURikpCUZCQnBSlJRWrSkJZ0pCcDGclEZrKQlWxkJwc5yUVu8pCXfOSnAAX5Pw3IjlY=
+  </data>
+ </layer>
+ <layer name="graphic" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2DogwhG4vAoGNpgNI5HDhjN06OAGHCegzAeBaMAG2Aa4RgASE4SJQ==
+  </data>
+ </layer>
+ <objectgroup name="brick">
+  <object id="2" x="359" y="99" width="199" height="19"/>
+  <object id="3" x="240" y="179" width="179" height="20"/>
+  <object id="4" x="138" y="262" width="202" height="16"/>
+  <object id="8" x="342" y="339" width="179" height="22"/>
+ </objectgroup>
+ <objectgroup name="ground">
+  <object id="1" x="1" y="438" width="639" height="41"/>
+  <object id="16" x="1" y="-4" height="441"/>
+  <object id="17" x="640" y="2" height="434"/>
+  <object id="18" x="2" y="-3" width="639"/>
+ </objectgroup>
+</map>
