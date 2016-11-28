@@ -27,7 +27,7 @@ import java.awt.*;
 public class PlayScreen implements Screen {
 
     private MyGdxGame game;
-    //private TextureAtlas atlas;
+    private TextureAtlas atlas;
 
     private OrthographicCamera gamecam;
     private Viewport gameport;
@@ -37,14 +37,18 @@ public class PlayScreen implements Screen {
         private TiledMap map;
         private OrthogonalTiledMapRenderer renderer;
 
+        //box2d variable
         private World world;
         private Box2DDebugRenderer b2dr;
 
+        //sprite
         private Boy player;
+        private candy candy;
 
 
 
     public PlayScreen(MyGdxGame game){
+        atlas = new TextureAtlas("eiei.atlas");
         this.game = game;
 
 
@@ -59,18 +63,20 @@ public class PlayScreen implements Screen {
 
         world = new World(new Vector2(0,-10),true);
         b2dr = new Box2DDebugRenderer();
-        player = new Boy(world);
+        player = new Boy(this);
 
-        new  B2WorldCreator(world,map);
+        world.setContactListener(new WorldContactListener());
 
+        new  B2WorldCreator(this);
 
+        //enemy
+        candy = new candy(this,.32f,.32f);
 
+    }
 
-        }
-
-    /*public TextureAtlas getAtlas(){
+    public TextureAtlas getAtlas(){
         return atlas;
-    }*/
+    }
     @Override
     public void show() {
 
@@ -91,12 +97,14 @@ public class PlayScreen implements Screen {
 
     public void update(float dt){
         handleInput(dt);
+        player.update(dt);
+        candy.update(dt);
 
         world.step(1/60f,6,2);
 
-
         gamecam.update();
         renderer.setView(gamecam);
+
 
     }
 
@@ -111,6 +119,12 @@ public class PlayScreen implements Screen {
 
         b2dr.render(world,gamecam.combined);
 
+        game.batch.setProjectionMatrix(gamecam.combined);
+        game.batch.begin();
+        player.draw(game.batch);
+        candy.draw(game.batch);
+        game.batch.end();
+
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
@@ -122,6 +136,12 @@ public class PlayScreen implements Screen {
     public void resize(int width, int height) {
         gameport.update(width,height);
 
+    }
+    public TiledMap getMap(){
+        return map;
+    }
+    public World getWorld(){
+        return world;
     }
 
     @Override

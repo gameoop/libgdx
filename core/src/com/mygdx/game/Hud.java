@@ -16,9 +16,9 @@ public class Hud implements Disposable{
     public Stage stage;
     private Viewport viewport;
 
-    private Integer score;
+    private static Integer score;
 
-    Label scoreLable;
+    static Label  scoreLable;
     Label levelLable;
     Label GdxLable;
     Label StateLable;
@@ -44,6 +44,12 @@ public class Hud implements Disposable{
         table.add(levelLable).expandX();
 
         stage.addActor(table);
+
+    }
+    public static void addScore(int value){
+        score += value;
+        scoreLable.setText(String.format("%02",score));
+
 
     }
 

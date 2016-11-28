@@ -15,9 +15,11 @@ public abstract class InteractiveTileObject {
     private Rectangle bounds;
     private Body body;
 
-    public InteractiveTileObject(World world,TiledMap map,Rectangle bounds){
-        this.world = world;
-        this.map = map;
+    protected Fixture fixture;
+
+    public InteractiveTileObject(PlayScreen screen,Rectangle bounds){
+        this.world = screen.getWorld();
+        this.map = screen.getMap();
         this.bounds = bounds;
 
         BodyDef bdef = new BodyDef();
@@ -30,8 +32,13 @@ public abstract class InteractiveTileObject {
         body = world.createBody(bdef);
         shape.setAsBox(bounds.getWidth()/2/MyGdxGame.PPM,bounds.getHeight()/2/MyGdxGame.PPM);
         fdef.shape = shape;
-        body.createFixture(fdef);
-
-
+        fixture = body.createFixture(fdef);
+    }
+    public  abstract void onHeadHit();
+   //ชน
+    public void setCategoryFilter(short filterBit){
+        Filter filter = new Filter();
+        filter.categoryBits = filterBit;
+        fixture.setFilterData(filter);
     }
 }
