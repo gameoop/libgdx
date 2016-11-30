@@ -39,12 +39,13 @@ public class candy extends enemy {
         stateTime += dt;
         setPosition(b2body.getPosition().x-getWidth()/2,b2body.getPosition().y-getWidth()/2);
         setRegion(walk.getKeyFrame(stateTime));
+        b2body.setLinearVelocity(velocity);
     }
 
     @Override
     protected void defineEnemy() {
         BodyDef bdef = new BodyDef();
-        bdef.position.set(32/MyGdxGame.PPM,32/MyGdxGame.PPM);
+        bdef.position.set(getX(),getY());
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 
@@ -57,10 +58,11 @@ public class candy extends enemy {
         fdef.filter.maskBits = MyGdxGame.GROUND_BIT |
                 MyGdxGame.BRICK_BIT |
                 MyGdxGame.ENEMY_BIT |
-                MyGdxGame.OBJECT_BIT;
+                MyGdxGame.OBJECT_BIT |
+                MyGdxGame.BOY_BIT;
 
         fdef.shape = shape;
-        b2body.createFixture(fdef);
+        b2body.createFixture(fdef).setUserData(this);
 
 
     }

@@ -40,10 +40,11 @@ public class PlayScreen implements Screen {
         //box2d variable
         private World world;
         private Box2DDebugRenderer b2dr;
+        private B2WorldCreator creator;
 
         //sprite
         private Boy player;
-        private candy candy;
+        //private candy candy;
 
 
 
@@ -57,7 +58,7 @@ public class PlayScreen implements Screen {
         hud = new Hud(game.batch);
 
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("bg.tmx");
+        map = mapLoader.load("bg1.tmx");
         renderer = new OrthogonalTiledMapRenderer(map,1/MyGdxGame.PPM);
         gamecam.position.set(gameport.getWorldWidth()/2, gameport.getWorldHeight()/2,0);
 
@@ -67,10 +68,10 @@ public class PlayScreen implements Screen {
 
         world.setContactListener(new WorldContactListener());
 
-        new  B2WorldCreator(this);
+        creator = new  B2WorldCreator(this);
 
-        //enemy
-        candy = new candy(this,.32f,.32f);
+
+
 
     }
 
@@ -98,8 +99,8 @@ public class PlayScreen implements Screen {
     public void update(float dt){
         handleInput(dt);
         player.update(dt);
-        candy.update(dt);
-
+        for(enemy enemy : creator.getCandies())
+            enemy.update(dt);
         world.step(1/60f,6,2);
 
         gamecam.update();
@@ -122,7 +123,8 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.draw(game.batch);
-        candy.draw(game.batch);
+        for(enemy enemy : creator.getCandies())
+            enemy.draw(game.batch);
         game.batch.end();
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);

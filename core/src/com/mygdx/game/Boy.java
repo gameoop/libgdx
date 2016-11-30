@@ -61,7 +61,7 @@ public class Boy extends Sprite {
     }
 
     public void update(float dt){
-        setPosition(b2body.getPosition().x-getWidth()/2,b2body.getPosition().y-getHeight()/2);
+        setPosition(b2body.getPosition().x-getWidth()/2,b2body.getPosition().y-getHeight()/3);
         setRegion(getFrame(dt));
     }
 
