@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -10,11 +11,12 @@ import java.util.Vector;
 /**
  * Created by com on 28/11/2559.
  */
-public abstract class enemy extends Sprite{
+public abstract class enemy extends Sprite {
     protected World world;
     protected PlayScreen screen;
     public Body b2body;
-   public Vector2 velocity;
+    public Vector2 velocity;
+
 
 
     public enemy(PlayScreen screen,float x,float y){
@@ -22,11 +24,15 @@ public abstract class enemy extends Sprite{
         this.screen = screen;
         setPosition(x,y);
         defineEnemy();
-       velocity = new Vector2(1,0);
+       velocity = new Vector2(0.6f,0);
+
 
     }
     protected abstract void defineEnemy();
-    public abstract void update(float at);
+    public abstract void update(float dt);
+
+
+
 
     public void reverseVelocity(boolean x,boolean y){
         if(x)
@@ -34,4 +40,7 @@ public abstract class enemy extends Sprite{
         if(y)
             velocity.y = -velocity.y;
     }
+
+
+
 }

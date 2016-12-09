@@ -32,13 +32,13 @@ public class Hud implements Disposable{
         table.top();
         table.setFillParent(true);
 
-        scoreLable = new Label(String.format("%02d",score),new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        scoreLable = new Label(String.format("%04d",score),new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         levelLable = new Label("1-3",new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         GdxLable = new Label("ChubbyBoy",new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         StateLable =  new Label("Level",new Label.LabelStyle(new BitmapFont(), Color.BLACK));
 
-        table.add(GdxLable).expandX().padTop(50);
-        table.add(StateLable).expandX().padTop(50);
+        table.add(GdxLable).expandX().padTop(10);
+        table.add(StateLable).expandX().padTop(10);
         table.row();
         table.add(scoreLable).expandX();
         table.add(levelLable).expandX();
@@ -48,7 +48,7 @@ public class Hud implements Disposable{
     }
     public static void addScore(int value){
         score += value;
-        scoreLable.setText(String.format("%02",score));
+        scoreLable.setText(String.format("%04d",score));
 
 
     }

@@ -17,11 +17,14 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.*;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.MyGdxGame;
 
 import java.awt.*;
+import java.util.PriorityQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 
 public class PlayScreen implements Screen {
@@ -44,12 +47,15 @@ public class PlayScreen implements Screen {
 
         //sprite
         private Boy player;
-        //private candy candy;
 
 
 
+
+
+
+    //constructor
     public PlayScreen(MyGdxGame game){
-        atlas = new TextureAtlas("eiei.atlas");
+        atlas = new TextureAtlas("player.atlas");
         this.game = game;
 
 
@@ -58,7 +64,7 @@ public class PlayScreen implements Screen {
         hud = new Hud(game.batch);
 
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("bg1.tmx");
+        map = mapLoader.load("bgone.tmx");
         renderer = new OrthogonalTiledMapRenderer(map,1/MyGdxGame.PPM);
         gamecam.position.set(gameport.getWorldWidth()/2, gameport.getWorldHeight()/2,0);
 
@@ -72,7 +78,6 @@ public class PlayScreen implements Screen {
 
 
 
-
     }
 
     public TextureAtlas getAtlas(){
@@ -83,31 +88,53 @@ public class PlayScreen implements Screen {
 
     }
 
-    public void handleInput(float dt){
-       if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
-           player.b2body.applyLinearImpulse(new Vector2(0,5f),player.b2body.getWorldCenter(),true);
-
-        if(Gdx.input.isKeyPressed(Input.Keys.RIGHT)&& player.b2body.getLinearVelocity().x <=2)
-            player.b2body.applyLinearImpulse(new Vector2(0.09f,0),player.b2body.getWorldCenter(),true);
-
-        if(Gdx.input.isKeyPressed(Input.Keys.LEFT)&& player.b2body.getLinearVelocity().x >=-2)
-            player.b2body.applyLinearImpulse(new Vector2(-0.09f,0),player.b2body.getWorldCenter(),true);
+    public void handleInput(float dt) {
+        if(player.currentState != Boy.State.DEAD) {
 
 
+            if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
+                player.b2body.applyLinearImpulse(new Vector2(0, 5f), player.b2body.getWorldCenter(), true);
+
+            if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
+                player.b2body.applyLinearImpulse(new Vector2(0.09f, 0), player.b2body.getWorldCenter(), true);
+
+            if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
+                player.b2body.applyLinearImpulse(new Vector2(-0.09f, 0), player.b2body.getWorldCenter(), true);
+        }
     }
 
     public void update(float dt){
         handleInput(dt);
+
         player.update(dt);
-        for(enemy enemy : creator.getCandies())
-            enemy.update(dt);
         world.step(1/60f,6,2);
+        //enemy
+        for(enemy enemy : creator.getCandies()) {
+            enemy.update(dt);
+            if(enemy.getX() < player.getX() + 224 / MyGdxGame.PPM) {
+                enemy.b2body.setActive(true);
+            }
+
+        }
+
+
+
+
+        for(Item item : creator.getItem1s())
+            item.update(dt);
+        for(Item item : creator.getItem2s())
+            item.update(dt);
+       /* for(Item heart : creator.getHearts())
+            heart.update(dt);*/
+
+
 
         gamecam.update();
         renderer.setView(gamecam);
 
 
     }
+
 
     @Override
     public void render(float delta) {
@@ -123,15 +150,37 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.draw(game.batch);
+
+        //enemy
         for(enemy enemy : creator.getCandies())
             enemy.draw(game.batch);
-        game.batch.end();
 
+        //item
+        for(Item item : creator.getItem1s())
+           item.draw(game.batch);
+
+        for(Item item : creator.getItem2s())
+            item.draw(game.batch);
+        /*for(Item heart: creator.getHearts())
+            heart.draw(game.batch);*/
+
+
+        game.batch.end();
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
+        if(gameOver()){
+            game.setScreen(new GameOverScreen(game));
+            dispose();
+        }
 
 
+    }
+    public boolean gameOver(){
+        if(player.currentState == Boy.State.DEAD && player.getStateTimer()>3){
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -159,6 +208,7 @@ public class PlayScreen implements Screen {
     @Override
     public void hide() {
 
+
     }
 
     @Override
@@ -169,4 +219,7 @@ public class PlayScreen implements Screen {
         b2dr.dispose();
         hud.dispose();
     }
+    public Hud getHud(){ return hud; }
+
+
 }
