@@ -108,12 +108,26 @@ public class PlayScreen implements Screen {
 
         player.update(dt);
         world.step(1/60f,6,2);
+
+
+        player.update(dt);
+        /*for( enemy : creator.getCandies(); {
+            enemy.update(dt);
+            if(enemy.getX() < player.getX() + 224 / MyGdxGame.PPM) {
+                enemy.b2body.setActive(true);
+            }
+        }*/
+
         //enemy
         for(enemy enemy : creator.getCandies()) {
             enemy.update(dt);
             if(enemy.getX() < player.getX() + 224 / MyGdxGame.PPM) {
                 enemy.b2body.setActive(true);
             }
+            /*if(enemy.collides(player.getBounds())){
+                game.setScreen(new GameOverScreen(game));
+
+            }*/
 
         }
 
@@ -126,13 +140,8 @@ public class PlayScreen implements Screen {
             item.update(dt);
        /* for(Item heart : creator.getHearts())
             heart.update(dt);*/
-
-
-
         gamecam.update();
         renderer.setView(gamecam);
-
-
     }
 
 
@@ -176,8 +185,8 @@ public class PlayScreen implements Screen {
 
 
     }
-    public boolean gameOver(){
-        if(player.currentState == Boy.State.DEAD && player.getStateTimer()>3){
+   public boolean gameOver(){
+        if(player.currentState == Boy.State.DEAD && player.getStateTimer()>10){
             return true;
         }
         return false;

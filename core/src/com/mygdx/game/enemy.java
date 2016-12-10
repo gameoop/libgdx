@@ -2,6 +2,7 @@ package com.mygdx.game;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
@@ -16,6 +17,7 @@ public abstract class enemy extends Sprite {
     protected PlayScreen screen;
     public Body b2body;
     public Vector2 velocity;
+    private Rectangle boundsenemy;
 
 
 
@@ -24,12 +26,14 @@ public abstract class enemy extends Sprite {
         this.screen = screen;
         setPosition(x,y);
         defineEnemy();
-       velocity = new Vector2(0.6f,0);
+        velocity = new Vector2(0.6f,0);
+        boundsenemy = new Rectangle(x,y,60,60);
 
 
     }
     protected abstract void defineEnemy();
     public abstract void update(float dt);
+
 
 
 
@@ -40,6 +44,11 @@ public abstract class enemy extends Sprite {
         if(y)
             velocity.y = -velocity.y;
     }
+    /*public boolean collides(Rectangle player){
+        return player.overlaps(boundsenemy);
+    }*/
+
+
 
 
 

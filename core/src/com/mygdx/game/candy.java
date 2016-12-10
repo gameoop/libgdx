@@ -44,7 +44,6 @@ public class candy extends enemy {
 
 
 
-
     @Override
     protected void defineEnemy() {
         BodyDef bdef = new BodyDef();
@@ -65,7 +64,7 @@ public class candy extends enemy {
                 MyGdxGame.BOY_BIT |
                 MyGdxGame.ITEM_BIT;
 
-        fdef.shape = shape;
+       fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(this);
 
     }

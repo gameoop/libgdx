@@ -33,13 +33,13 @@ public class WorldContactListener implements ContactListener {
                 else
                     ((enemy)fixB.getUserData()).reverseVelocity(true,false);
                 break;
-            case MyGdxGame.BOY_BIT | MyGdxGame.ENEMY_BIT:
-                Gdx.app.log("candy","die");
-                /*if(fixA.getFilterData().categoryBits == MyGdxGame.BOY_BIT)
-                    ((Boy) fixA.getUserData()).hit((enemy) fixB.getUserData());
+           case MyGdxGame.BOY_BIT | MyGdxGame.ENEMY_BIT:
+
+                if(fixA.getFilterData().categoryBits == MyGdxGame.BOY_BIT)
+                    ((Boy) fixA.getUserData()).die();
                 else
-                    ((Boy)fixB.getUserData()).hit((enemy) fixA.getUserData());
-                break;*/
+                    ((Boy) fixB.getUserData()).die();
+                break;
 
 
             case MyGdxGame.ENEMY_BIT | MyGdxGame.ENEMY_BIT :

@@ -1,14 +1,12 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.*;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 
-import java.awt.*;
 import java.awt.Rectangle;
 
 import static com.mygdx.game.Boy.State.JUMPING;
@@ -18,7 +16,6 @@ import static com.mygdx.game.Boy.State.JUMPING;
  */
 public class Boy extends Sprite {
     public enum State {FALLING, JUMPING, STANDING, RUNNING, DEAD}
-
 
 
     public State currentState;
@@ -38,6 +35,7 @@ public class Boy extends Sprite {
     private boolean boyisdead;
     private TextureRegion boydead;
 
+    private com.badlogic.gdx.math.Rectangle bounds;
 
 
     public Boy(PlayScreen screen) {
@@ -69,22 +67,21 @@ public class Boy extends Sprite {
         setRegion(boystand);
 
 
-
-      //boydead = new TextureRegion(screen.getAtlas().findRegion("playerjump"), 0, 143, 57, 98);
-
+        boydead = new TextureRegion(getTexture(),0, 143, 57, 98);
+        //*bounds = new com.badlogic.gdx.math.Rectangle();
 
 
     }
 
     public void update(float dt) {
 
-       /* if (!isDead()) {
-            die();
-        }*/
-
-
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 3);
         setRegion(getFrame(dt));
+
+
+        /*if (!isDead()) {
+           die();
+        }*/
     }
 
 
@@ -129,7 +126,7 @@ public class Boy extends Sprite {
             return State.FALLING;
         else if (b2body.getLinearVelocity().x != 0)
             return State.RUNNING;
-         else
+        else
             return State.STANDING;
     }
 
@@ -150,35 +147,38 @@ public class Boy extends Sprite {
                 MyGdxGame.OBJECT_BIT |
                 MyGdxGame.BOY_BIT |
                 MyGdxGame.ITEM_BIT |
-                MyGdxGame.ENEMY_BIT;
+               MyGdxGame.ENEMY_BIT;
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
 
 
-
     }
+
     public float getStateTimer() {
         return stateTimer;
     }
 
-   /* public boolean isDead() {
+
+    public boolean isDead() {
         return boyisdead;
     }
 
    public void die() {
-        if (!isDead()) {
-            boyisdead = true;
-
-        }
+       if (!isDead()){
+           boyisdead = true;
+       /*Filter filter = new filter();
+       filter.maskBits = MyGdxGame.NOTHING_BIT;
+       for (Filter filter : b2body.getFixtureList())
+           filter.setFilter(filter);
+       b2body.applyLinearImpulse(new Vector2(0, 4f), b2body.getWorldCenter(), true);*/
     }
-
-
-
-    public void hit(enemy enemy) {
-        die();
-
+    }
+    /*public com.badlogic.gdx.math.Rectangle getBounds(){
+        return bounds;
     }*/
+
+
 }
 
 
