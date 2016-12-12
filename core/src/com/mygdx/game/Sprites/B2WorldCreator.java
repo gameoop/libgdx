@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.Sprites;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -6,6 +6,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.game.Playscreen.MyGdxGame;
+import com.mygdx.game.Playscreen.Brick;
+import com.mygdx.game.Playscreen.PlayScreen;
 
 /**
  * Created by com on 24/11/2559.

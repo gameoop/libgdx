@@ -1,7 +1,8 @@
-package com.mygdx.game;
+package com.mygdx.game.Sprites;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.*;
+import com.mygdx.game.Playscreen.Hud;
+import com.mygdx.game.Playscreen.MyGdxGame;
 
 /**
  * Created by com on 28/11/2559.
@@ -16,14 +17,7 @@ public class WorldContactListener implements ContactListener {
 
         int cDef = fixA.getFilterData().categoryBits | fixB.getFilterData().categoryBits;
 
-        /*if(fixA.getUserData() == "head" || fixB.getUserData() == "head"){
-            Fixture head = fixA.getUserData() == "head" ? fixA:fixB;
-            Fixture object = head == fixA ? fixB : fixA;
 
-            if(object.getUserData() instanceof InteractiveTileObject){
-                ((InteractiveTileObject) object.getUserData()).onHeadHit();
-            }
-        }*/
         switch (cDef){
 
 
@@ -34,12 +28,9 @@ public class WorldContactListener implements ContactListener {
                     ((enemy)fixB.getUserData()).reverseVelocity(true,false);
                 break;
            case MyGdxGame.BOY_BIT | MyGdxGame.ENEMY_BIT:
+               Hud.addScore(-10);
+               break;
 
-                if(fixA.getFilterData().categoryBits == MyGdxGame.BOY_BIT)
-                    ((Boy) fixA.getUserData()).die();
-                else
-                    ((Boy) fixB.getUserData()).die();
-                break;
 
 
             case MyGdxGame.ENEMY_BIT | MyGdxGame.ENEMY_BIT :
@@ -60,12 +51,7 @@ public class WorldContactListener implements ContactListener {
                     ((Item)fixB.getUserData()).use((Boy) fixA.getUserData());
                 break;
 
-
-
         }
-
-
-
 
     }
 

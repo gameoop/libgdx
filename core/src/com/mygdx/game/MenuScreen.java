@@ -6,26 +6,33 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Playscreen.MyGdxGame;
+import com.mygdx.game.Playscreen.PlayScreen;
 
 /**
- * Created by com on 2/12/2559.
+ * Created by com on 12/12/2559.
  */
-public class GameOverScreen implements Screen {
+public class MenuScreen implements Screen{
     private Viewport viewport;
     private Stage stage;
 
     private Game game;
 
-    public GameOverScreen(Game game){
+
+
+    public MenuScreen(Game game){
         this.game = game;
         viewport = new FitViewport(MyGdxGame.WIDTH,MyGdxGame.HETGHT,new OrthographicCamera());
         stage = new Stage(viewport,((MyGdxGame)game).batch);
+
 
         Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
 
@@ -33,14 +40,15 @@ public class GameOverScreen implements Screen {
         table.center();
         table.setFillParent(true);
 
-        Label gameOverLable = new Label("GAME OVER", font);
-        Label playagainLable = new Label("Click to Play Again", font);
+        Label gameOverLable = new Label("START", font);
+        Label playagainLable = new Label("Click to Play ", font);
 
         table.add(gameOverLable).expandX();
         table.row();
         table.add(playagainLable).expandX().padTop(10f);
 
         stage.addActor(table);
+
     }
     @Override
     public void show() {
@@ -55,7 +63,10 @@ public class GameOverScreen implements Screen {
         }
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+
+
         stage.draw();
+
 
     }
 
@@ -81,7 +92,9 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void dispose() {
+
         stage.dispose();
+
 
     }
 }

@@ -1,13 +1,11 @@
-package com.mygdx.game;
+package com.mygdx.game.Sprites;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
-
-import java.util.Vector;
+import com.mygdx.game.Playscreen.PlayScreen;
 
 /**
  * Created by com on 28/11/2559.
@@ -44,9 +42,7 @@ public abstract class enemy extends Sprite {
         if(y)
             velocity.y = -velocity.y;
     }
-    /*public boolean collides(Rectangle player){
-        return player.overlaps(boundsenemy);
-    }*/
+
 
 
 

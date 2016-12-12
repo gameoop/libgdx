@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.Sprites;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -6,6 +6,9 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.game.Playscreen.Hud;
+import com.mygdx.game.Playscreen.MyGdxGame;
+import com.mygdx.game.Playscreen.PlayScreen;
 
 /**
  * Created by com on 3/12/2559.
@@ -25,7 +28,7 @@ public class item2 extends Item {
             walk = new Animation(0.4f,frame);
         }
         stateTime = 0;
-        setBounds(getX(),getY(),60/MyGdxGame.PPM,60/MyGdxGame.PPM);
+        setBounds(getX(),getY(),60/ MyGdxGame.PPM,60/MyGdxGame.PPM);
     }
 
     public void update(float dt){
