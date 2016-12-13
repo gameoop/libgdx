@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="24" tilewidth="20" tileheight="20" nextobjectid="46">
+ <tileset firstgid="1" name="bg" tilewidth="20" tileheight="20" tilecount="768" columns="32">
+  <image source="bg2.0.png" width="640" height="480"/>
+ </tileset>
+ <tileset firstgid="769" name="tile" tilewidth="20" tileheight="20" tilecount="572" columns="26">
+  <image source="Tileset.png" width="528" height="448"/>
+ </tileset>
+ <layer name="bg" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJwV1oMSGAYARMHYtm3btm3btm1bbWzbtm3btpNuZ26/4V7AAAECBCIwQQhKMIITgpCEIjRhCEs4whOBiEQiMlGISjSiE4OYxCI2cYhLPOKTgIQkIjFJSEoykpOClKQiNWlISzrSk4GMZCIzWchKNrKTg5zkIjd5yEs+8lOAghSiMEUoSjGKU4KSlKI0ZShLOcpTgYpUojJVqEo1qlODmtSiNnWoSz3q04CGNKIxTWhKM5rTgpa0ojVtaEs72tOBjnSiM13oSje604Oe9KI3fehLP/ozgIEMYjBDGMowhjOCkYxiNGMYyzjGM4GJTGIyU5jKNKYzg5nM4h/+ZTZzmMs85rOAhSxiMUtYyjKWs4KVrGI1a1jLOtazgY1sYjNb2Mo2trODnexiN3vYyz72c4CDHOIwRzjKMY5zgpOc4jRnOMs5znOBi1ziMle4yjWuc4Ob3OI2d7jLPe7zgIc84jFPeMoznvOCl7ziNW94yzve84GPfOIzX/jKN77zg5/84jd/+EuAgEYgAhOEoAQjOCEISShCE4awhCM8EYhIJCIThahEIzoxiEksYhOHuMQjPglISCISk4SkJCM5KUhJKlKThrSkIz0ZyEgmMpOFrGQjOznISS5yk4e85CM/BShIIQpThKIUozglKEkpSlOGspSjPBWoSCUqU4WqVKM6NahJLWpTh7rUoz4NaEgjGtOEpjSjOS1oSSta04a2tKM9HehIJzrTha50ozs96EkvetOHvvSjPwMYyCAGM4ShDGM4IxjJKEYzhrGMYzwTmMgkJjOFqUxjOjOYySz+4V9mM4e5zGM+C1jIIhazhKUsYzkrWMkqVrOGtaxjPRvYyCY2s4WtbGM7O9jJLnazh73sYz8HOMghDnOEoxzjOCc4ySlOc4aznOM8F7jIJS5zhatc4zo3uMktbnOHu9zjPg94yCMe84SnPOM5L3jJK17zhre84z0f+MgnPvOFr3zjOz/4yS9+84e//H/8AQlEYIIQlGAEJwQhCUVowhCWcIQnAhGJRGSiEJVoRCcGMYlFbOIQl3jEJwEJSURikpCUZCQnBSlJRWrSkJZ0pCcDGclEZrKQlWxkJwc5yUVu8pCXfOSnAAUpRGGKUJRiFKcEJSlFacpQlnKUpwIVqURlqlCValSnBjWpRW3qUJd61KcBDWlEY5rQlGY0pwUtaUVr2tCWdrSnAx3pRGe60JVudKcHPelFb/rQl370ZwADGcRghjCUYQxnBCMZxWjGMJZxjGcCE5nEZKYwlWlMZwYzmcU//Mts5jCXecxnAQtZxGKWsJRlLGcFK1nFatawlnWsZwMb2cRmtrCVbWxnBzvZxW72sJd97OcABznEYY5wlGMc5wQnOcVpznCWc5znAhe5xGWucJVrXOcGN7nFbe5wl3vc5wEPecRjnvCUZzznBS95xWve8JZ3vOcDH/nEZ77wlW985wc/+cVv/vCX/6P/P4ufgZM=
+  </data>
+ </layer>
+ <layer name="graphics" width="32" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFIx2YMTMwmAOxBTOETSmAmYNsJjobxh8FgxPA4scULf5gfJiY2WhcDnmAHIfkxCWuNIIt/4+CoQPw5X9S45rYNIZs5mh6GQW0BozANMYExMxAzMI88vgADoMQ9g==
+  </data>
+ </layer>
+ <objectgroup name="ground">
+  <object id="1" x="0" y="439" width="640" height="42"/>
+  <object id="2" x="638" y="2" width="2" height="438"/>
+  <object id="3" x="-1" y="2" width="1" height="437"/>
+  <object id="4" x="0" y="0" width="639" height="2"/>
+  <object id="26" x="121.333" y="150.833" height="10.5"/>
+  <object id="27" x="459.333" y="312.167" height="10.5"/>
+  <object id="28" x="140" y="310.238" height="12.5467"/>
+  <object id="32" x="379" y="149" height="12.5"/>
+  <object id="37" x="419.5" y="68" width="1" height="11"/>
+ </objectgroup>
+ <objectgroup name="brick">
+  <object id="5" x="21" y="79" width="77.6667" height="21"/>
+  <object id="6" x="120" y="161" width="260" height="20"/>
+  <object id="7" x="340" y="240" width="220" height="19"/>
+  <object id="8" x="520" y="322" width="99" height="19"/>
+  <object id="9" x="140" y="322.157" width="319" height="16.9381"/>
+  <object id="10" x="19" y="240" width="100" height="19"/>
+  <object id="11" x="419.5" y="79" width="218.5" height="20"/>
+  <object id="29" x="80.6667" y="342.167" width="78.6667" height="16"/>
+ </objectgroup>
+ <objectgroup name="candy">
+  <object id="13" x="339" y="142" width="22" height="19"/>
+  <object id="14" x="603" y="60" width="18" height="19"/>
+  <object id="15" x="448" y="420" width="18" height="18"/>
+  <object id="16" x="324" y="420" width="19" height="18"/>
+  <object id="17" x="383" y="302" width="21" height="19"/>
+ </objectgroup>
+ <objectgroup name="item">
+  <object id="18" x="55" y="220" width="20" height="19"/>
+  <object id="19" x="560" y="300" width="19" height="22"/>
+  <object id="20" x="219" y="301" width="22" height="21"/>
+  <object id="34" x="500.5" y="220.5" width="19.5" height="18.5"/>
+ </objectgroup>
+ <objectgroup name="item2">
+  <object id="21" x="440" y="58" width="19" height="19"/>
+  <object id="22" x="49.1667" y="59.8333" width="19" height="18"/>
+  <object id="23" x="239" y="138" width="20" height="21"/>
+ </objectgroup>
+</map>

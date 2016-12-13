@@ -1,0 +1,89 @@
+
+player.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+playerjump
+  rotate: false
+  xy: 1, 143
+  size: 285, 98
+  orig: 285, 98
+  offset: 0, 0
+  index: -1
+playerleft
+  rotate: false
+  xy: 1, 43
+  size: 285, 98
+  orig: 285, 98
+  offset: 0, 0
+  index: -1
+playerright
+  rotate: false
+  xy: 288, 143
+  size: 285, 98
+  orig: 285, 98
+  offset: 0, 0
+  index: -1
+click1
+  rotate: false
+  xy: 288, 41
+  size: 200, 100
+  orig: 200, 100
+  offset: 0, 0
+  index: -1
+item2
+  rotate: false
+  xy: 575, 141
+  size: 160, 100
+  orig: 160, 100
+  offset: 0, 0
+  index: -1
+eneblu1
+  rotate: false
+  xy: 737, 181
+  size: 120, 60
+  orig: 120, 60
+  offset: 0, 0
+  index: -1
+eneblu2
+  rotate: false
+  xy: 859, 181
+  size: 120, 60
+  orig: 120, 60
+  offset: 0, 0
+  index: -1
+eneylw1
+  rotate: false
+  xy: 737, 119
+  size: 120, 60
+  orig: 120, 60
+  offset: 0, 0
+  index: -1
+eneylw2
+  rotate: false
+  xy: 859, 119
+  size: 120, 60
+  orig: 120, 60
+  offset: 0, 0
+  index: -1
+press
+  rotate: false
+  xy: 1, 1
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+heart
+  rotate: false
+  xy: 490, 91
+  size: 80, 50
+  orig: 80, 50
+  offset: 0, 0
+  index: -1
+item1
+  rotate: false
+  xy: 103, 1
+  size: 80, 40
+  orig: 80, 40
+  offset: 0, 0
+  index: -1
