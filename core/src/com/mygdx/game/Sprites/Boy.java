@@ -3,12 +3,14 @@ package com.mygdx.game.Sprites;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.Playscreen.Hud;
 import com.mygdx.game.Playscreen.MyGdxGame;
 import com.mygdx.game.Playscreen.PlayScreen;
 
+import static com.mygdx.game.Sprites.Boy.State.DEAD;
 import static com.mygdx.game.Sprites.Boy.State.JUMPING;
 
 /**
@@ -32,7 +34,8 @@ public class Boy extends Sprite {
     private float stateTimer;
     private boolean runningRight;
 
-    private boolean boyisdead;
+    private static boolean boyisdead;
+
 
 
 
@@ -41,7 +44,7 @@ public class Boy extends Sprite {
         super(screen.getAtlas().findRegion("playerjump"));
         this.world = screen.getWorld();
 
-
+        boyisdead = false;
         currentState = State.STANDING;
         prevState = State.STANDING;
         stateTimer = 0;
@@ -75,11 +78,6 @@ public class Boy extends Sprite {
 
         setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 3);
         setRegion(getFrame(dt));
-
-
-      /*  if (!isDead()) {
-           die();
-        }*/
     }
 
 
@@ -116,8 +114,9 @@ public class Boy extends Sprite {
     public State getState() {
         if (boyisdead)
             return State.DEAD;
-        else if (b2body.getLinearVelocity().y > 0 || (b2body.getLinearVelocity().y < 0 && prevState == State.JUMPING))
+        else if (b2body.getLinearVelocity().y > 0 || (b2body.getLinearVelocity().y < 0 && prevState == State.JUMPING)) {
             return JUMPING;
+        }
         else if (b2body.getLinearVelocity().y < 0)
             return State.FALLING;
         else if (b2body.getLinearVelocity().x != 0)
@@ -131,17 +130,9 @@ public class Boy extends Sprite {
         return boyisdead;
     }
 
-    public void die() {
-
-            boyisdead = true;
-
-
-    }
-
-
-    public void hit(enemy enemy) {
-
-        die();
+    public static boolean die() {
+        boyisdead = true;
+        return boyisdead;
     }
 
 

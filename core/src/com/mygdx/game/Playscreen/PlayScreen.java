@@ -3,6 +3,7 @@ package com.mygdx.game.Playscreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -37,6 +38,9 @@ public class PlayScreen implements Screen {
         //sprite
         private Boy player;
 
+    private Music music;
+    private Rectangle playerHitBox;
+
 
 
     //constructor
@@ -50,7 +54,7 @@ public class PlayScreen implements Screen {
         hud = new Hud(game.batch);
 
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("bgone.tmx");
+        map = mapLoader.load("bgtwo.tmx");
         renderer = new OrthogonalTiledMapRenderer(map,1/MyGdxGame.PPM);
         gamecam.position.set(gameport.getWorldWidth()/2, gameport.getWorldHeight()/2,0);
 
@@ -62,6 +66,9 @@ public class PlayScreen implements Screen {
 
         creator = new  B2WorldCreator(this);
 
+        music = MyGdxGame.manager.get("audio/Music/335361__cabled-mess__little-happy-tune-22-10.wav", Music.class);
+        music.setLooping(true);
+        music.play();
 
 
     }
@@ -76,10 +83,12 @@ public class PlayScreen implements Screen {
 
     public void handleInput(float dt) {
         if(player.currentState != Boy.State.DEAD) {
+            if(player.b2body.getLinearVelocity().y==0)
+            if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+                player.b2body.applyLinearImpulse(new Vector2(0, 5f), player.b2body.getWorldCenter(), true);;
 
+            }
 
-            if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE))
-                player.b2body.applyLinearImpulse(new Vector2(0, 5f), player.b2body.getWorldCenter(), true);
 
             if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
                 player.b2body.applyLinearImpulse(new Vector2(0.09f, 0), player.b2body.getWorldCenter(), true);
@@ -91,6 +100,11 @@ public class PlayScreen implements Screen {
 
     public void update(float dt){
         handleInput(dt);
+
+//        if(WorldContactListener.isHit()){
+//            System.out.println("gameover");
+//            gameOver();
+//        }
 
         player.update(dt);
         world.step(1/60f,6,2);
@@ -116,6 +130,7 @@ public class PlayScreen implements Screen {
         renderer.setView(gamecam);
 
 
+
     }
 
 
@@ -134,6 +149,7 @@ public class PlayScreen implements Screen {
         game.batch.begin();
         player.draw(game.batch);
 
+
         //enemy
         for(enemy enemy : creator.getCandies())
             enemy.draw(game.batch);
@@ -147,21 +163,20 @@ public class PlayScreen implements Screen {
         /*for(Item heart: creator.getHearts())
             heart.draw(game.batch);*/
 
-
         game.batch.end();
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
         if(gameOver()){
             game.setScreen(new GameOverScreen(game));
-            dispose();
+
         }
 
 
     }
 
     public boolean gameOver(){
-        if(player.currentState == Boy.State.DEAD && player.getStateTimer()>10){
+        if(player.currentState == Boy.State.DEAD ){
             return true;
         }
         return false;

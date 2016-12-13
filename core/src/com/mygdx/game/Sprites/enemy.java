@@ -25,7 +25,7 @@ public abstract class enemy extends Sprite {
         setPosition(x,y);
         defineEnemy();
         velocity = new Vector2(0.6f,0);
-        boundsenemy = new Rectangle(x,y,60,60);
+        boundsenemy = new Rectangle(velocity.x,velocity.y,60,60);
 
 
     }
@@ -41,11 +41,7 @@ public abstract class enemy extends Sprite {
             velocity.x = -velocity.x;
         if(y)
             velocity.y = -velocity.y;
+
     }
-
-
-
-
-
 
 }

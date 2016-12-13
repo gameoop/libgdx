@@ -9,6 +9,12 @@ import com.mygdx.game.Playscreen.MyGdxGame;
  */
 public class WorldContactListener implements ContactListener {
 
+    public static boolean hit=false;
+
+    public static boolean isHit(){
+        return hit;
+    }
+
     //เช็คการชน
     @Override
     public void beginContact(Contact contact) {
@@ -24,11 +30,13 @@ public class WorldContactListener implements ContactListener {
             case MyGdxGame.ENEMY_BIT | MyGdxGame.OBJECT_BIT :
                 if(fixA.getFilterData().categoryBits == MyGdxGame.ENEMY_BIT)
                     ((enemy) fixA.getUserData()).reverseVelocity(true, false);
+
+
                 else
                     ((enemy)fixB.getUserData()).reverseVelocity(true,false);
                 break;
            case MyGdxGame.BOY_BIT | MyGdxGame.ENEMY_BIT:
-               Hud.addScore(-10);
+               Boy.die();
                break;
 
 

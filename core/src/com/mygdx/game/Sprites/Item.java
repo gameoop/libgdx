@@ -1,10 +1,12 @@
 package com.mygdx.game.Sprites;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.game.Playscreen.MyGdxGame;
 import com.mygdx.game.Playscreen.PlayScreen;
 import com.mygdx.game.Sprites.Boy;
 
@@ -18,6 +20,7 @@ public abstract  class Item extends Sprite {
     protected Body body;
     boolean todestroy;
     boolean destroy;
+
 
     public Item(PlayScreen screen, float x, float y) {
         this.screen = screen;
@@ -36,6 +39,7 @@ public abstract  class Item extends Sprite {
         if(todestroy && !destroy){
             world.destroyBody(body);
             destroy = true;
+            MyGdxGame.manager.get("audio/sound/242857__plasterbrain__coin-get.ogg", Sound.class).play();
         }
     }
     public void draw(Batch batch){

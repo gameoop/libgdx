@@ -1,9 +1,10 @@
 package com.mygdx.game.Playscreen;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.MenuScreen;
-import com.mygdx.game.Playscreen.PlayScreen;
 
 public class MyGdxGame extends Game {
 
@@ -22,13 +23,16 @@ public class MyGdxGame extends Game {
 
 
 	public SpriteBatch batch;
-
-
+    public static AssetManager manager;
 
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
+		manager = new AssetManager();
+		manager.load("audio/Music/335361__cabled-mess__little-happy-tune-22-10.wav", Music.class);
+		manager.load("audio/sound/242857__plasterbrain__coin-get.ogg", Sound.class);
+		manager.finishLoading();
 		setScreen(new PlayScreen(this));
 		setScreen(new MenuScreen(this));
 
@@ -39,6 +43,7 @@ public class MyGdxGame extends Game {
 	@Override
 	public void render () {
    	 	 super.render();
+
 
 
 	}
