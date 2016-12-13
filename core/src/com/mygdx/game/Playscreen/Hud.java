@@ -17,13 +17,19 @@ public class Hud implements Disposable{
     private Viewport viewport;
 
     private static Integer score;
+    public Integer worldTimer;
+    private float timeCount;
 
     static Label  scoreLable;
-    Label levelLable;
+
+    Label countDownLabel;
     Label GdxLable;
-    Label StateLable;
+    Label timeLabel;
+
 
     public Hud(SpriteBatch sb){
+        worldTimer = 30;
+        timeCount = 0;
         score = 0;
         viewport = new FitViewport(MyGdxGame.WIDTH,MyGdxGame.HETGHT,new OrthographicCamera());
         stage = new Stage(viewport,sb);
@@ -32,16 +38,16 @@ public class Hud implements Disposable{
         table.top();
         table.setFillParent(true);
 
+        countDownLabel = new Label(String.format("%02d",worldTimer),new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         scoreLable = new Label(String.format("%04d",score),new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-        levelLable = new Label("1-3",new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        timeLabel = new Label("Time",new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         GdxLable = new Label("ChubbyBoy",new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-        StateLable =  new Label("Level",new Label.LabelStyle(new BitmapFont(), Color.BLACK));
 
         table.add(GdxLable).expandX().padTop(10);
-        table.add(StateLable).expandX().padTop(10);
+        table.add(timeLabel).expandX().padTop(10);
         table.row();
         table.add(scoreLable).expandX();
-        table.add(levelLable).expandX();
+        table.add(countDownLabel).expandX();
 
         stage.addActor(table);
 
@@ -50,6 +56,15 @@ public class Hud implements Disposable{
         score += value;
         scoreLable.setText(String.format("%04d",score));
 
+
+    }
+    public void update(float dt){
+        timeCount += dt;
+        if(timeCount>=1){
+            worldTimer--;
+            countDownLabel.setText(String.format("%02d",worldTimer));
+            timeCount = 0;
+        }
 
     }
 

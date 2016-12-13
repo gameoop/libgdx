@@ -26,7 +26,7 @@ public class GameOverScreen implements Screen {
    private Game game;
     SpriteBatch batch;
     Texture gameover;
-
+    Texture bg;
 
 
     public GameOverScreen(Game game){
@@ -35,22 +35,23 @@ public class GameOverScreen implements Screen {
         stage = new Stage(viewport,((MyGdxGame)game).batch);
 
 
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.BLACK);
 
         Table table = new Table();
         table.center();
         table.setFillParent(true);
 
-        Label gameOverLable = new Label("GAME OVER", font);
-        Label playagainLable = new Label("Press SPACE to Play Again", font);
 
-        table.add(gameOverLable).expandX();
+        Label playagainLable = new Label("ENTER to Play Again", font);
+
+
         table.row();
         table.add(playagainLable).expandX().padTop(10f);
 
         stage.addActor(table);
         batch = new SpriteBatch();
         gameover = new Texture("gameover.png");
+        bg = new Texture("bg2.0.png");
 
 
     }
@@ -63,17 +64,19 @@ public class GameOverScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             game.setScreen(new PlayScreen((MyGdxGame) game));
             dispose();
         }
 
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        stage.draw();
+
         batch.begin();
+        batch.draw(bg,0,0);
         batch.draw(gameover,50,250);
         batch.end();
+        stage.draw();
 
 
     }

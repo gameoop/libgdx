@@ -28,6 +28,7 @@ public class MenuScreen implements Screen{
     private Game game;
     private SpriteBatch batch;
     Texture start;
+    Texture bg;
 
 
 
@@ -37,14 +38,14 @@ public class MenuScreen implements Screen{
         stage = new Stage(viewport,((MyGdxGame)game).batch);
 
 
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.WHITE);
+        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.BLACK);
 
         Table table = new Table();
         table.center();
         table.setFillParent(true);
 
        // Label gameOverLable = new Label("START", font);
-        Label playagainLable = new Label("Press SPACE to play ", font);
+        Label playagainLable = new Label("ENTER to play ", font);
 
         //table.add(gameOverLable).expandX();
         table.row();
@@ -53,6 +54,7 @@ public class MenuScreen implements Screen{
         stage.addActor(table);
         batch = new SpriteBatch();
         start = new Texture("startgame.png");
+        bg = new Texture("bg2.0.png");
 
     }
     @Override
@@ -62,7 +64,7 @@ public class MenuScreen implements Screen{
 
     @Override
     public void render(float delta) {
-        if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
             game.setScreen(new PlayScreen((MyGdxGame) game));
             dispose();
         }
@@ -70,7 +72,9 @@ public class MenuScreen implements Screen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
+        batch.draw(bg,0,0);
         batch.draw(start,50,250);
+
         batch.end();
         stage.draw();
 

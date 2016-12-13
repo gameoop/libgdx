@@ -33,9 +33,6 @@ public abstract class enemy extends Sprite {
     public abstract void update(float dt);
 
 
-
-
-
     public void reverseVelocity(boolean x,boolean y){
         if(x)
             velocity.x = -velocity.x;

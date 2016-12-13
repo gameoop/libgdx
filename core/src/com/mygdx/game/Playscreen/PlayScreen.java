@@ -39,7 +39,6 @@ public class PlayScreen implements Screen {
         private Boy player;
 
     private Music music;
-    private Rectangle playerHitBox;
 
 
 
@@ -108,7 +107,13 @@ public class PlayScreen implements Screen {
 
         player.update(dt);
         world.step(1/60f,6,2);
+        hud.update(dt);
 
+
+        if(hud.worldTimer == 0){
+           Boy.die();
+
+        }
 
         player.update(dt);
 
@@ -167,16 +172,19 @@ public class PlayScreen implements Screen {
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
+
         if(gameOver()){
             game.setScreen(new GameOverScreen(game));
+
 
         }
 
 
     }
 
+
     public boolean gameOver(){
-        if(player.currentState == Boy.State.DEAD ){
+        if(player.currentState == Boy.State.DEAD  ){
             return true;
         }
         return false;

@@ -26,6 +26,7 @@ public class Boy extends Sprite {
     public Body b2body;
 
     private TextureRegion boystand;
+    private TextureRegion BoyDead;
 
     private Animation boyRun;
     private Animation boyjump;
@@ -67,6 +68,8 @@ public class Boy extends Sprite {
         boystand = new TextureRegion(getTexture(), 0, 143, 57, 98);
         setBounds(0, 0, 57 / MyGdxGame.PPM, 98 / MyGdxGame.PPM);
         setRegion(boystand);
+
+        BoyDead = new TextureRegion(screen.getAtlas().findRegion("playerjump"),0,143,57,98);
 
 
 

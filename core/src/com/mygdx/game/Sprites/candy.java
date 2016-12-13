@@ -12,7 +12,8 @@ import com.mygdx.game.Playscreen.PlayScreen;
 /**
  * Created by com on 28/11/2559.
  */
-public class candy extends enemy {
+public class
+candy extends enemy {
 
     private float stateTime;
     private Animation walk;
