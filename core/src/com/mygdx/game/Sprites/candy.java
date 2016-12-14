@@ -27,7 +27,7 @@ candy extends enemy {
 
         for(int i =0;i<2;i++){
             frame.add(new TextureRegion(screen.getAtlas().findRegion("eneylw1"),i*60,0,60,60));
-            walk = new Animation(0.4f,frame);
+            walk = new Animation(0.1f,frame);
         }
         stateTime = 0;
         setBounds(getX(),getY(),60/ MyGdxGame.PPM,60/MyGdxGame.PPM);

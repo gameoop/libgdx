@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
+
 import com.mygdx.game.Playscreen.Hud;
 import com.mygdx.game.Playscreen.MyGdxGame;
 import com.mygdx.game.Playscreen.PlayScreen;
@@ -60,7 +61,7 @@ public class Boy extends Sprite {
         }
         for (int i = 6; i < 10; i++) {
             frames.add(new TextureRegion(getTexture(), i * 57, 143, 57, 98));
-            boyRun = new Animation(0.1f, frames);
+            boyRun = new Animation(-0.1f, frames);
             frames.clear();
         }
 
@@ -79,7 +80,7 @@ public class Boy extends Sprite {
 
     public void update(float dt) {
 
-        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 3);
+        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 4);
         setRegion(getFrame(dt));
     }
 
@@ -147,7 +148,7 @@ public class Boy extends Sprite {
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(20 / MyGdxGame.PPM);
+        shape.setRadius(15 / MyGdxGame.PPM);
 
         //ชน
         fdef.filter.categoryBits = MyGdxGame.BOY_BIT;

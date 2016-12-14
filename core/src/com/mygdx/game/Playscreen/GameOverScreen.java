@@ -1,18 +1,17 @@
 package com.mygdx.game.Playscreen;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -24,9 +23,17 @@ public class GameOverScreen implements Screen {
     private Stage stage;
 
    private Game game;
-    SpriteBatch batch;
+    private SpriteBatch batch;
     Texture gameover;
     Texture bg;
+    Texture press;
+
+
+
+
+
+
+
 
 
     public GameOverScreen(Game game){
@@ -35,7 +42,7 @@ public class GameOverScreen implements Screen {
         stage = new Stage(viewport,((MyGdxGame)game).batch);
 
 
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.BLACK);
+        /*Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.BLACK);
 
         Table table = new Table();
         table.center();
@@ -43,15 +50,15 @@ public class GameOverScreen implements Screen {
 
 
         Label playagainLable = new Label("ENTER to Play Again", font);
-
-
         table.row();
         table.add(playagainLable).expandX().padTop(10f);
+        stage.addActor(table);*/
 
-        stage.addActor(table);
+
         batch = new SpriteBatch();
         gameover = new Texture("gameover.png");
         bg = new Texture("bg2.0.png");
+        press = new Texture("pressplayagain.png");
 
 
     }
@@ -65,7 +72,7 @@ public class GameOverScreen implements Screen {
     @Override
     public void render(float delta) {
         if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-            game.setScreen(new PlayScreen((MyGdxGame) game));
+            game.setScreen(new MenuScreen((Game) game));
             dispose();
         }
 
@@ -75,8 +82,11 @@ public class GameOverScreen implements Screen {
         batch.begin();
         batch.draw(bg,0,0);
         batch.draw(gameover,50,250);
+        batch.draw(press,100,180);
         batch.end();
         stage.draw();
+
+
 
 
     }

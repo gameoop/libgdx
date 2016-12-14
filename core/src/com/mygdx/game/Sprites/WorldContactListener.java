@@ -1,5 +1,6 @@
 package com.mygdx.game.Sprites;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Playscreen.Hud;
 import com.mygdx.game.Playscreen.MyGdxGame;
@@ -9,11 +10,7 @@ import com.mygdx.game.Playscreen.MyGdxGame;
  */
 public class WorldContactListener implements ContactListener {
 
-    public static boolean hit=false;
 
-    public static boolean isHit(){
-        return hit;
-    }
 
     //เช็คการชน
     @Override
@@ -30,15 +27,19 @@ public class WorldContactListener implements ContactListener {
             case MyGdxGame.ENEMY_BIT | MyGdxGame.OBJECT_BIT :
                 if(fixA.getFilterData().categoryBits == MyGdxGame.ENEMY_BIT)
                     ((enemy) fixA.getUserData()).reverseVelocity(true, false);
-
-
                 else
                     ((enemy)fixB.getUserData()).reverseVelocity(true,false);
                 break;
-           case MyGdxGame.BOY_BIT | MyGdxGame.ENEMY_BIT:
-               Boy.die();
-               break;
 
+           case MyGdxGame.BOY_BIT | MyGdxGame.ENEMY_BIT:
+               if(fixA.getFilterData().categoryBits == MyGdxGame.ENEMY_BIT)
+                   ((enemy) fixA.getUserData()).reverseVelocity(true, false);
+               else
+                   ((enemy)fixB.getUserData()).reverseVelocity(true,false);
+               Hud.Lift(-1);
+               //Boy.die();
+               MyGdxGame.manager.get("audio/sound/350925__cabled-mess__hurt-c-08.wav", Sound.class).play();
+               break;
 
 
             case MyGdxGame.ENEMY_BIT | MyGdxGame.ENEMY_BIT :
@@ -52,16 +53,19 @@ public class WorldContactListener implements ContactListener {
                     ((enemy)fixB.getUserData()).reverseVelocity(true,false);
                 break;
             case MyGdxGame.BOY_BIT | MyGdxGame.ITEM_BIT:
-                //Gdx.app.log("item","score");
+
                 if(fixA.getFilterData().categoryBits == MyGdxGame.ITEM_BIT)
+
                     ((Item) fixA.getUserData()).use((Boy) fixB.getUserData());
                 else
                     ((Item)fixB.getUserData()).use((Boy) fixA.getUserData());
+
                 break;
 
         }
 
     }
+
 
     @Override
     public void endContact(Contact contact) {

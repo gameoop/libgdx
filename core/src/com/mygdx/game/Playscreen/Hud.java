@@ -16,21 +16,26 @@ public class Hud implements Disposable{
     public Stage stage;
     private Viewport viewport;
 
-    private static Integer score;
+    public static Integer score;
+    public  static Integer heart;
     public Integer worldTimer;
     private float timeCount;
 
     static Label  scoreLable;
 
+    Label heartLabel;
     Label countDownLabel;
     Label GdxLable;
     Label timeLabel;
+    static Label countDownHeartLabel;
+
 
 
     public Hud(SpriteBatch sb){
-        worldTimer = 30;
+        worldTimer = 100;
         timeCount = 0;
         score = 0;
+        heart = 3;
         viewport = new FitViewport(MyGdxGame.WIDTH,MyGdxGame.HETGHT,new OrthographicCamera());
         stage = new Stage(viewport,sb);
 
@@ -40,14 +45,22 @@ public class Hud implements Disposable{
 
         countDownLabel = new Label(String.format("%02d",worldTimer),new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         scoreLable = new Label(String.format("%04d",score),new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-        timeLabel = new Label("Time",new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-        GdxLable = new Label("ChubbyBoy",new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        timeLabel = new Label("TIME",new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        GdxLable = new Label("SCORE",new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        countDownHeartLabel = new Label(String.format("x"+"%01d",heart),new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        heartLabel  = new Label("HEART",new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+
+
+
 
         table.add(GdxLable).expandX().padTop(10);
         table.add(timeLabel).expandX().padTop(10);
+        table.add(heartLabel).expandX().padTop(10);
         table.row();
         table.add(scoreLable).expandX();
         table.add(countDownLabel).expandX();
+        table.add(countDownHeartLabel).expandX();
+
 
         stage.addActor(table);
 
@@ -56,6 +69,12 @@ public class Hud implements Disposable{
         score += value;
         scoreLable.setText(String.format("%04d",score));
 
+
+    }
+
+    public static void Lift(int value){
+        heart += value;
+        countDownHeartLabel.setText(String.format("x"+"%01d",heart));
 
     }
     public void update(float dt){

@@ -13,7 +13,7 @@
  </layer>
  <layer name="graphics" width="32" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFIx2YMTMwmAOxBTOETSmAmYNsJjobxh8FgxPA4scULf5gfJiY2WhcDnmAHIfkxCWuNIIt/4+CoQPw5X9S45rYNIZs5mh6GQW0BozANMYExMxAzMI88vgADoMQ9g==
+   eJxjYBgFIx2YMTMwmAOxBTOETSmAmYNsJjobxh8FgxPA4scULf5gfJiY2WhcDnmAHIfkxCWuNIIt/4+CoQuwpRNi45rYNIZsJrp5o2loFFAbMALTExMQMwMxC/PI4wMAaZARNQ==
   </data>
  </layer>
  <objectgroup name="ground">
@@ -23,19 +23,19 @@
   <object id="4" x="0" y="0" width="639" height="2"/>
   <object id="26" x="121.333" y="150.833" height="10.5"/>
   <object id="27" x="459.333" y="312.167" height="10.5"/>
-  <object id="28" x="140" y="310.238" height="12.5467"/>
-  <object id="32" x="379" y="149" height="12.5"/>
-  <object id="37" x="419.5" y="68" width="1" height="11"/>
+  <object id="28" x="220" y="310.738" width="2" height="12.0467"/>
+  <object id="32" x="379" y="154.333" height="7.16667"/>
+  <object id="37" x="419.5" y="71" width="1" height="8"/>
  </objectgroup>
  <objectgroup name="brick">
-  <object id="5" x="21" y="79" width="77.6667" height="21"/>
-  <object id="6" x="120" y="161" width="260" height="20"/>
-  <object id="7" x="340" y="240" width="220" height="19"/>
-  <object id="8" x="520" y="322" width="99" height="19"/>
-  <object id="9" x="140" y="322.157" width="319" height="16.9381"/>
-  <object id="10" x="19" y="240" width="100" height="19"/>
-  <object id="11" x="419.5" y="79" width="218.5" height="20"/>
-  <object id="29" x="80.6667" y="342.167" width="78.6667" height="16"/>
+  <object id="5" x="21" y="79" width="77.6667" height="12.3333"/>
+  <object id="6" x="120" y="161" width="260" height="13.3333"/>
+  <object id="7" x="340" y="240" width="220" height="12.3333"/>
+  <object id="8" x="520" y="322" width="99" height="11"/>
+  <object id="9" x="220" y="322.157" width="239" height="10.9381"/>
+  <object id="10" x="19" y="240" width="100" height="14.3333"/>
+  <object id="11" x="419.5" y="81" width="218.5" height="12.6667"/>
+  <object id="29" x="80.6667" y="342.167" width="179.333" height="12.6667"/>
  </objectgroup>
  <objectgroup name="candy">
   <object id="13" x="339" y="142" width="22" height="19"/>
@@ -47,11 +47,11 @@
  <objectgroup name="item">
   <object id="18" x="55" y="220" width="20" height="19"/>
   <object id="19" x="560" y="300" width="19" height="22"/>
-  <object id="20" x="219" y="301" width="22" height="21"/>
+  <object id="20" x="296.333" y="301.667" width="22" height="21"/>
   <object id="34" x="500.5" y="220.5" width="19.5" height="18.5"/>
  </objectgroup>
  <objectgroup name="item2">
-  <object id="21" x="440" y="58" width="19" height="19"/>
+  <object id="21" x="440" y="60" width="19" height="19"/>
   <object id="22" x="49.1667" y="59.8333" width="19" height="18"/>
   <object id="23" x="239" y="138" width="20" height="21"/>
  </objectgroup>

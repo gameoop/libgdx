@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Sprites.*;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 
 public class PlayScreen implements Screen {
@@ -34,8 +36,10 @@ public class PlayScreen implements Screen {
         private World world;
         private Box2DDebugRenderer b2dr;
         private B2WorldCreator creator;
+        public int checkscore;
 
-        //sprite
+
+    //sprite
         private Boy player;
 
     private Music music;
@@ -53,7 +57,7 @@ public class PlayScreen implements Screen {
         hud = new Hud(game.batch);
 
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("bgtwo.tmx");
+        map = mapLoader.load("bgone.tmx");
         renderer = new OrthogonalTiledMapRenderer(map,1/MyGdxGame.PPM);
         gamecam.position.set(gameport.getWorldWidth()/2, gameport.getWorldHeight()/2,0);
 
@@ -65,7 +69,7 @@ public class PlayScreen implements Screen {
 
         creator = new  B2WorldCreator(this);
 
-        music = MyGdxGame.manager.get("audio/Music/335361__cabled-mess__little-happy-tune-22-10.wav", Music.class);
+        music = MyGdxGame.manager.get("audio/Music/273539__tristan-lohengrin__8bit-introduction.wav", Music.class);
         music.setLooping(true);
         music.play();
 
@@ -81,13 +85,13 @@ public class PlayScreen implements Screen {
     }
 
     public void handleInput(float dt) {
+
         if(player.currentState != Boy.State.DEAD) {
             if(player.b2body.getLinearVelocity().y==0)
             if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
                 player.b2body.applyLinearImpulse(new Vector2(0, 5f), player.b2body.getWorldCenter(), true);;
-
+                MyGdxGame.manager.get("audio/sound/262893__kwahmah-02__videogame-jump.wav", Sound.class).play();
             }
-
 
             if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
                 player.b2body.applyLinearImpulse(new Vector2(0.09f, 0), player.b2body.getWorldCenter(), true);
@@ -100,20 +104,17 @@ public class PlayScreen implements Screen {
     public void update(float dt){
         handleInput(dt);
 
-//        if(WorldContactListener.isHit()){
-//            System.out.println("gameover");
-//            gameOver();
-//        }
-
+        System.out.println();
         player.update(dt);
         world.step(1/60f,6,2);
         hud.update(dt);
 
 
-        if(hud.worldTimer == 0){
-           Boy.die();
 
+        if(hud.worldTimer == 0 ||  hud.heart == 0){
+           Boy.die();
         }
+
 
         player.update(dt);
 
@@ -134,9 +135,8 @@ public class PlayScreen implements Screen {
         gamecam.update();
         renderer.setView(gamecam);
 
-
-
     }
+
 
 
     @Override
@@ -165,30 +165,84 @@ public class PlayScreen implements Screen {
 
         for(Item item : creator.getItem2s())
             item.draw(game.batch);
-        /*for(Item heart: creator.getHearts())
-            heart.draw(game.batch);*/
+
 
         game.batch.end();
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
 
 
+
         if(gameOver()){
             game.setScreen(new GameOverScreen(game));
-
-
         }
+        if(nextScreen()){
+            hud.score=checkscore;
+            if(map!=null){
+                map=mapLoader.load("bgtwo.tmx");
+                renderer = new OrthogonalTiledMapRenderer(map,1/MyGdxGame.PPM);
+                gamecam.position.set(gameport.getWorldWidth()/2, gameport.getWorldHeight()/2,0);
 
+                world = new World(new Vector2(0,-10),true);
+                b2dr = new Box2DDebugRenderer();
+                player = new Boy(this);
 
+                world.setContactListener(new WorldContactListener());
+
+                creator = new  B2WorldCreator(this);
+            }
+        }
+        if(nextScreen2()){
+            hud.score=checkscore;
+            if(map!=null){
+                map=mapLoader.load("bgone.tmx");
+                renderer = new OrthogonalTiledMapRenderer(map,1/MyGdxGame.PPM);
+                gamecam.position.set(gameport.getWorldWidth()/2, gameport.getWorldHeight()/2,0);
+
+                world = new World(new Vector2(0,-10),true);
+                b2dr = new Box2DDebugRenderer();
+                player = new Boy(this);
+
+                world.setContactListener(new WorldContactListener());
+
+                creator = new  B2WorldCreator(this);
+            }
+        }
     }
 
 
+
     public boolean gameOver(){
-        if(player.currentState == Boy.State.DEAD  ){
+        if(player.currentState == Boy.State.DEAD && player.getStateTimer() > 1 ){
+            MyGdxGame.manager.get("audio/sound/159408__noirenex__life-lost-game-over.wav", Sound.class).play();
             return true;
         }
         return false;
     }
+    public Boolean nextState2 = true ;
+    public Boolean nextState3 = true ;
+    public boolean nextScreen() {
+        checkscore = hud.score;
+        if (checkscore==1000&&nextState2) {
+            hud.score=0;
+            nextState2 = false;
+            return true;
+
+        }
+        return false;
+
+    }
+    public boolean nextScreen2() {
+        checkscore = hud.score;
+        if (checkscore==2000&&nextState3){
+            hud.score=0;
+            nextState3 = false;
+            return true;
+        }
+        return false ;
+
+    }
+
 
     @Override
     public void resize(int width, int height) {

@@ -18,6 +18,7 @@ public abstract  class Item extends Sprite {
     protected World world;
     protected Vector2 velocity;
     protected Body body;
+    private  int countItem = 0;
     boolean todestroy;
     boolean destroy;
 
@@ -43,13 +44,18 @@ public abstract  class Item extends Sprite {
         }
     }
     public void draw(Batch batch){
+
         if(!destroy)
+
             super.draw(batch);
     }
     public void destroy(){
+        countItem++;
         todestroy = true;
     }
 
-
+    public int getCountItem() {
+        return countItem;
+    }
 }
 

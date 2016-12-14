@@ -24,6 +24,7 @@ public abstract class enemy extends Sprite {
         this.screen = screen;
         setPosition(x,y);
         defineEnemy();
+
         velocity = new Vector2(0.6f,0);
         boundsenemy = new Rectangle(velocity.x,velocity.y,60,60);
 

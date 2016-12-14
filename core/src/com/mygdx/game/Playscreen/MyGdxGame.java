@@ -30,8 +30,12 @@ public class MyGdxGame extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 		manager = new AssetManager();
-		manager.load("audio/Music/335361__cabled-mess__little-happy-tune-22-10.wav", Music.class);
+		manager.load("audio/Music/273539__tristan-lohengrin__8bit-introduction.wav", Music.class);
 		manager.load("audio/sound/242857__plasterbrain__coin-get.ogg", Sound.class);
+		manager.load("audio/sound/262893__kwahmah-02__videogame-jump.wav", Sound.class);
+		manager.load("audio/sound/159408__noirenex__life-lost-game-over.wav", Sound.class);
+		manager.load("audio/sound/350925__cabled-mess__hurt-c-08.wav", Sound.class);
+
 		manager.finishLoading();
 		setScreen(new PlayScreen(this));
 		setScreen(new MenuScreen(this));

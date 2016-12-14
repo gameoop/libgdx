@@ -29,6 +29,7 @@ public class MenuScreen implements Screen{
     private SpriteBatch batch;
     Texture start;
     Texture bg;
+    Texture press;
 
 
 
@@ -38,23 +39,24 @@ public class MenuScreen implements Screen{
         stage = new Stage(viewport,((MyGdxGame)game).batch);
 
 
-        Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.BLACK);
+        //Label.LabelStyle font = new Label.LabelStyle(new BitmapFont(), Color.BLACK);
 
-        Table table = new Table();
+        /*Table table = new Table();
         table.center();
         table.setFillParent(true);
 
        // Label gameOverLable = new Label("START", font);
-        Label playagainLable = new Label("ENTER to play ", font);
+        //Label playagainLable = new Label("ENTER to play ", font);
 
         //table.add(gameOverLable).expandX();
-        table.row();
-        table.add(playagainLable).expandX().padTop(10f);
+       // table.row();
+       // table.add(playagainLable).expandX().padTop(10f);*/
 
-        stage.addActor(table);
+        //stage.addActor(table);
         batch = new SpriteBatch();
         start = new Texture("startgame.png");
         bg = new Texture("bg2.0.png");
+        press = new Texture("pressenter.png");
 
     }
     @Override
@@ -74,6 +76,7 @@ public class MenuScreen implements Screen{
         batch.begin();
         batch.draw(bg,0,0);
         batch.draw(start,50,250);
+        batch.draw(press,150,230);
 
         batch.end();
         stage.draw();
