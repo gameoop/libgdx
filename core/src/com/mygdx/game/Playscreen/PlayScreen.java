@@ -195,7 +195,7 @@ public class PlayScreen implements Screen {
         if(nextScreen2()){
             hud.score=checkscore;
             if(map!=null){
-                map=mapLoader.load("bgone.tmx");
+                map=mapLoader.load("bgthree.tmx");
                 renderer = new OrthogonalTiledMapRenderer(map,1/MyGdxGame.PPM);
                 gamecam.position.set(gameport.getWorldWidth()/2, gameport.getWorldHeight()/2,0);
 
@@ -207,6 +207,9 @@ public class PlayScreen implements Screen {
 
                 creator = new  B2WorldCreator(this);
             }
+        }
+        if(checkscore==100){
+            game.setScreen(new WinState(game));
         }
     }
 
@@ -223,7 +226,7 @@ public class PlayScreen implements Screen {
     public Boolean nextState3 = true ;
     public boolean nextScreen() {
         checkscore = hud.score;
-        if (checkscore==1000&&nextState2) {
+        if (checkscore==100&&nextState2) {
             hud.score=0;
             nextState2 = false;
             return true;
@@ -234,7 +237,7 @@ public class PlayScreen implements Screen {
     }
     public boolean nextScreen2() {
         checkscore = hud.score;
-        if (checkscore==2000&&nextState3){
+        if (checkscore==200&&nextState3){
             hud.score=0;
             nextState3 = false;
             return true;

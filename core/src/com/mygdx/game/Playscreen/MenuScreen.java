@@ -55,7 +55,7 @@ public class MenuScreen implements Screen{
         //stage.addActor(table);
         batch = new SpriteBatch();
         start = new Texture("startgame.png");
-        bg = new Texture("bg2.0.png");
+        bg = new Texture("startstate.png");
         press = new Texture("pressenter.png");
 
     }
@@ -75,8 +75,8 @@ public class MenuScreen implements Screen{
 
         batch.begin();
         batch.draw(bg,0,0);
-        batch.draw(start,50,250);
-        batch.draw(press,150,230);
+        batch.draw(start,50,300);
+        batch.draw(press,150,200);
 
         batch.end();
         stage.draw();
